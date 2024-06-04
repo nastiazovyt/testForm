@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useAuthStore } from '../store/authStore';
-import { showPassword } from '../helpers/showPass'
 import { isInputValid } from "~/helpers/isInputValid"
 
 const authStore = useAuthStore()
@@ -10,7 +9,7 @@ const alertMessage = () => {
         if (confirm('Введённые данные будут стёрты. Подтвердите переход')) {
             authStore.createInputs.forEach(elem => elem.inputValue = '')
             navigateTo('/')
-        } 
+        }
     } else {
         navigateTo('/')
     }
@@ -35,7 +34,6 @@ const alertMessage = () => {
                             :type="el.inputType"
                             v-model="el.inputValue"
                             :is-pass="el.isPass"
-                            @showPass="showPassword(authStore.createInputs)"
                             :placeholder="el.placeholder"
                         >
                         </InputComponent>

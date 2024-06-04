@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useAuthStore } from '../store/authStore';
-import { showPassword } from '../helpers/showPass'
 
 const authStore = useAuthStore()
 </script>
@@ -48,7 +47,6 @@ const authStore = useAuthStore()
                 <div class="flex flex-col items-center">
                     <div class="flex gap-y-2.5 flex-col mb-6">
                         <InputComponent
-                            @showPass="showPassword(authStore.authInputs)"
                             v-for="el in authStore.authInputs"
                             :key="el.placeholder"
                             v-model="el.inputValue"

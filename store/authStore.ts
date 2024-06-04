@@ -1,5 +1,3 @@
-import { isInputValid } from "~/helpers/isInputValid"
-
 export const useAuthStore = defineStore('auth', {
     state: () => {
         return {
@@ -87,3 +85,8 @@ export const useAuthStore = defineStore('auth', {
     }
 })
 
+function isInputValid (inputs: { inputValue: string }[]) {
+    return inputs.every((elem) => {
+        return elem.inputValue.trim().length !== 0
+    })
+}

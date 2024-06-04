@@ -1,6 +1,9 @@
 <script setup lang="ts">
-defineProps<{ placeholder: string, isPass: boolean, svg: string, type: string }>()
+const props = defineProps<{ placeholder: string, isPass: boolean, svg: string, type: string }>()
 const model = defineModel()
+const passIsVisible = ref(false)
+const togglePassVisibility = () => passIsVisible.value = !passIsVisible.value
+const inputType = computed(() => passIsVisible.value ? 'text' : props.type)
 </script>
 
 
@@ -10,13 +13,13 @@ const model = defineModel()
         <icons-pass-icon v-if="svg === 'pass'"></icons-pass-icon>
         <icons-user-icon v-if="svg === 'user'"></icons-user-icon>
         <input
-            :type="type"
+            :type="inputType"
             v-model="model"
             :placeholder="placeholder"
             class="p-0 font-normal bg-transparent border-0 font-inter text-inputText text-lg focus:ring-0"
         >
         <icons-eye-icon
-            @click="$emit('showPass')"
+            @click="togglePassVisibility"
             v-if="isPass"
             class="size-7 ms-auto cursor-pointer pointer-events-visible"
         ></icons-eye-icon>
